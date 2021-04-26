@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
               << " (方位角 "
               << std::setw(6) << tm_ah_mr.ah << "°)"
               << std::endl;
-    std::cout << "日南中 " << ns::gen_time_str(tm_ah_mm.time).substr(11, 8)
+    std::cout << "月南中 " << ns::gen_time_str(tm_ah_mm.time).substr(11, 8)
               << " (　高度 "
               << std::setw(6) << tm_ah_mm.ah << "°)"
               << std::endl;
