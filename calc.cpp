@@ -510,7 +510,8 @@ Coord Calc::ko2se(double jy, Coord cd_k) {
       +  cos(bet) * sin(lmd) * sin(ang_k);
     cd_s.lng = std::atan(b / a) / kPi180;
     // aがマイナスのときは 90°< α < 270° → 180°加算する
-    if (a < 0.0) { cd_s.lat += 180.0; }
+    //if (a < 0.0) { cd_s.lat += 180.0; }
+    if (a < 0.0) { cd_s.lng += 180.0; }
     cd_s.lat = std::asin(c) / kPi180;
   } catch (...) {
     throw;
@@ -573,7 +574,7 @@ double Calc:: hour_ang_diff(
     dt = tk - tm_sd + cd_s.lng;
     // dtの絶対値を180°以下に調整
     if (dt >  180.0) {
-      while (dt > 180.0) { dt -= - 360.0; }
+      while (dt > 180.0) { dt -= 360.0; }
     }
     if (dt < -180.0) {
       while (dt < -180.0) { dt += 360.0; }

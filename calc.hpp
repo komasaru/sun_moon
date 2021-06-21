@@ -13,7 +13,7 @@ namespace sun_moon {
 // 時刻、方位角／高度
 struct TmAh {
   struct timespec time;
-  double           ah;
+  double          ah;
 };
 // 座標
 struct Coord {
