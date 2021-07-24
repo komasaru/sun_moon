@@ -5,6 +5,8 @@
 
     DATE        AUTHOR       VERSION
     2021.04.09  mk-mode.com  1.00 新規作成
+    2021.07.24  mk-mode.com  1.01 月の出・南中・入 時の方位角・高度が
+                                  0.0 未満の場合の表示を改修。
 
   Copyright(C) 2021 mk-mode.com All Rights Reserved.
 ------------------------------------------------------------
@@ -105,18 +107,30 @@ int main(int argc, char* argv[]) {
               << " (方位角 "
               << std::setw(6) << tm_ah_ss.ah << "°)"
               << std::endl;
-    std::cout << "月の出 " << ns::gen_time_str(tm_ah_mr.time).substr(11, 8)
-              << " (方位角 "
-              << std::setw(6) << tm_ah_mr.ah << "°)"
-              << std::endl;
-    std::cout << "月南中 " << ns::gen_time_str(tm_ah_mm.time).substr(11, 8)
-              << " (　高度 "
-              << std::setw(6) << tm_ah_mm.ah << "°)"
-              << std::endl;
-    std::cout << "月の入 " << ns::gen_time_str(tm_ah_ms.time).substr(11, 8)
-              << " (方位角 "
-              << std::setw(6) << tm_ah_ms.ah << "°)"
-              << std::endl;
+    if (tm_ah_mr.ah < 0.0) {
+      std::cout << "月の出 --:--:-- (方位角 ---.--°)" << std::endl;
+    } else {
+      std::cout << "月の出 " << ns::gen_time_str(tm_ah_mr.time).substr(11, 8)
+                << " (方位角 "
+                << std::setw(6) << tm_ah_mr.ah << "°)"
+                << std::endl;
+    }
+    if (tm_ah_mm.ah < 0.0) {
+      std::cout << "月南中 --:--:-- (　高度 ---.--°)" << std::endl;
+    } else {
+      std::cout << "月南中 " << ns::gen_time_str(tm_ah_mm.time).substr(11, 8)
+                << " (　高度 "
+                << std::setw(6) << tm_ah_mm.ah << "°)"
+                << std::endl;
+    }
+    if (tm_ah_ms.ah < 0.0) {
+      std::cout << "月の入 --:--:-- (方位角 ---.--°)" << std::endl;
+    } else {
+      std::cout << "月の入 " << ns::gen_time_str(tm_ah_ms.time).substr(11, 8)
+                << " (方位角 "
+                << std::setw(6) << tm_ah_ms.ah << "°)"
+                << std::endl;
+    }
   } catch (...) {
       std::cerr << "EXCEPTION!" << std::endl;
       return EXIT_FAILURE;
