@@ -52,7 +52,7 @@ Calc::Calc(struct timespec jst, double lat, double lng, double ht) {
  */
 double Calc::calc_day_progress() {
   struct tm    t;
-  unsigned int y;
+  int          y;
   unsigned int m;
   unsigned int d;
   double       day_p;
